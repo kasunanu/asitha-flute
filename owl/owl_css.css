@@ -1,0 +1,61 @@
+.slider {
+  margin-bottom: 10px;
+  position: relative;
+}
+.slider .owl-item.active.center .slider-card {
+  /*transform: scale(1.15);*/
+  opacity: 1;
+  background: #ffffff; /* fallback for old browsers */
+}
+.slider-card {
+  background: #fff;
+  padding: 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 5px;
+  /*box-shadow: 0 15px 45px -20px rgb(0 0 0 / 73%);*/
+  transform: scale(1);
+  opacity: 1;
+  transition: all 0.3s;
+}
+.slider-card img {
+  /*border-radius: 5px 5px 0px 0px;*/
+}
+.owl-nav .owl-prev {
+    position: absolute;
+    top: calc(50% - 25px);
+    left: -10px;
+    opacity: 1;
+    font-size: 30px !important;
+    z-index: 1;
+    transition: 0.5s;
+}
+.owl-nav .owl-next {
+    position: absolute;
+    top: calc(50% - 25px);
+    /* right: -10px; */
+    opacity: 1;
+    font-size: 30px !important;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.owl-dots {
+    text-align: center;
+    /* display: none; */
+}
+/*.owl-carousel.owl-drag .owl-item{
+  margin-right: 0px !important;
+}*/
+.owl-dots .owl-dot {
+  height: 9px;
+  width: 9px;
+  border-radius: 10px;
+  background: #D9D9D9 !important;
+  margin-left: 3px;
+  margin-right: 3px;
+  outline: none;
+}
+.owl-dots .owl-dot.active {
+  background: #4676AE !important;
+}<gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"></gwmw><gwmw style="display:none;"></gwmw></gwmw></gwmw><gwmw style="display:none;"></gwmw></gwmw></gwmw></gwmw><gwmw style="display:none;">
+
