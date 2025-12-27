@@ -23,7 +23,7 @@ body {
     z-index: 9999;
     opacity: .03;
     pointer-events: none;
-    background-image: url(/images/Grain.gif);
+    background-image: url(../images/Grain.gif);
     background-position: 0 0;
     background-size: auto;
     position: fixed;
