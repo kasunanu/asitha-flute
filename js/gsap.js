@@ -1,6 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+  // --- PRELOADER LOGIC ---
+  const preloader = document.getElementById("preloader");
+  
+  // Hide the preloader when the window is fully loaded
+  window.addEventListener("load", () => {
+    const tl = gsap.timeline();
+
+    tl.to(".loader-content", {
+      opacity: 0,
+      y: -20,
+      duration: 1.5
+    })
+    .to(preloader, {
+      yPercent: -100, // Slides up like a curtain
+      duration: 1.5,
+      ease: "power4.inOut"
+    })
+    .from("#smooth-wrapper", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out"
+    }, "-=1") // Starts slightly before the curtain finishes
+    .set(preloader, { display: "none" }); // Remove from DOM so it doesn't block clicks
+  });
+
   const smoother = ScrollSmoother.create({
     wrapper: "#body",
     content: "#smooth-wrapper",
