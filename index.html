@@ -79,11 +79,20 @@
 
 <body>
 
+  <div id="custom-cursor"></div>
+
   <div id="preloader">
     <div class="preloader-content">
           <div class="loader-line"></div>
           <div class="loader-text">LOADING</div>
       </div>
+  </div>
+
+  <div class="whats-float">
+    <a href=""
+      target="_blank">
+        <i class="fa-brands fa-whatsapp"></i><span>WhatsApp<br><small>+9477 82 98 119</small></span>
+    </a>
   </div>
 
   <div id="smooth-wrapper">
@@ -145,11 +154,23 @@
                   <img src="images/logo.png" alt="" class="header_logo">
                   <p>Hi there! this is</p>
                   <h4><span class="text-light">Asitha</span> Senavirathne</h4>
-                  <h1>FREELANCE <span>FLUTIST</span></h1>
+                  <h1>FREELANCE 
+                    <br>
+                    <span id="typewriter">FLUTIST</span>
+                  </h1>
                 </div>
               </div>
-              <div class="col-3 d-flex flex-column justify-content-center position-relative">
+              <div class="col-3 d-flex flex-column justify-content-end position-relative gap-5">
                 <div class="caption">
+                  <div class="circle_text">
+                    <div class="circle_img"></div>
+                    <div class="text">
+                      <p>
+                        BREATH • SOUL • MELODY • HARMONY •
+                      </p>
+                    </div>
+                  </div>
+
                   <hr class="text-light">
                   <p>Live Covers</p>
                   <p>Niwenna</p>
@@ -179,7 +200,7 @@
   
                 </div>
   
-                <div class="caption position-absolute bottom-0 mb-3">
+                <div class="caption mb-3">
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere sit sequi natus accusantium
                     consectetur. Ducimus?</p>
                   <hr class="text-light">
@@ -1117,57 +1138,79 @@
     <!-- footer -->
   
     <div id="particles-js">
-      <div class="containe-fluid px-4 content">
-        <div class="row">
-          <div class="col-3">
-            <!-- social links -->
-            <div class="social_links footer_social_links mb-5">
-              <h5 class="text-light">Social Links</h5>
-              <a href="">
-                FaceBook
-              </a>
-              <br>
-              <a href="">
-                Instagram
-              </a>
-              <br>
-              <a href="">
-                Tiktok
-              </a>
-            </div>
-    
-            <div class="social_links footer_social_links mb-5">
-              <h5 class="text-light">Contact me</h5>
-              <a href="">
-                Email
-              </a>
-              <br>
-              <a href="">
-                WhatsApp
-              </a>
-              <br>
-              <a href="">
-                Telegram
-              </a>
-            </div>
-    
-            <hr class="text-light">
-    
+      <div class="containe-fluid px-4 content footer_con">
+        
+        <hr>
+      
+        <div class="row py-3">    
+          <div class="col-6">
+
             <div>
-              <p class="text-muted mb-2">
+              <p class="text-muted mb-1">
                 Got a project in mind?
               </p>
     
-              <h4 class="fw-light">
+              <h5 class="fw-light text-muted">
                 Let's make something happen together
-              </h4>
+              </h5>
             </div>
-    
+            
+            <h2 class="footer_mail">
+              Work with me
+            </h2>
           </div>
-          <div class="col-2">
+          <div class="col-6 text-end d-flex justify-content-end align-items-end">
+            <a href="">
+              <h2 class="footer_mail mail_link">
+                <!-- Hello@asitha.com -->
+                 +94 77 82 98 119
+              </h2>
+            </a>
           </div>
-    
+
+        <hr>
+
+        </div>
+
+        <div class="row">
+
           <div class="col-6">
+            <div class="d-flex gap-5">
+              <!-- social links -->
+              <div class="social_links footer_social_links mb-5">
+                
+                <h5 class="text-light">Social Links</h5>
+                <a href="">
+                  FaceBook
+                </a>
+                <br>
+                <a href="">
+                  Instagram
+                </a>
+                <br>
+                <a href="">
+                  Tiktok
+                </a>
+              </div>
+      
+              <div class="social_links footer_social_links mb-5">
+                <h5 class="text-light">Contact me</h5>
+                <a href="">
+                  Email
+                </a>
+                <br>
+                <a href="">
+                  WhatsApp
+                </a>
+                <br>
+                <a href="">
+                  Telegram
+                </a>
+              </div>
+            </div>
+          </div>
+    
+          <!-- <div class="col-4">
             <img src="images/logo.png" alt="" class="footer_logo">
             <h4 class="text-light fw-light mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit
               <br>
@@ -1179,7 +1222,7 @@
             <h4 class="footer_num">
               <a href="">077 82 98 119</a>
             </h4>
-          </div>
+          </div> -->
     
           <div class="col-12 marquee-wrapper  overflow-hidden">
             <div class="marquee-track  overflow-hidden">
@@ -1221,6 +1264,10 @@
               </h2>
             </div>
           </div>
+
+          <div class="col-12">
+            <p class="text-muted">copyright @ AsithaFlute</p>
+          </div>
     
         </div>
       </div>
@@ -1243,6 +1290,7 @@
   <script src="js/gsap.min.js"></script>
   <script src="js/ScrollTrigger.min.js"></script>
   <script src="js/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/TextPlugin.min.js"></script>
 
 
   <!-- gsap js -->
@@ -1346,6 +1394,14 @@
         updateBackground(slideIndex);
       });
     });
+
+    const text = document.querySelector(".text");
+    text.innerHTML = text.innerText
+      .split("")
+      .map(
+        (char, i) => `<span style="transform:rotate(${i * 10.3}deg)">${char}</span>`
+      )
+      .join("");
   </script>
 
   <!-- loading effect -->
