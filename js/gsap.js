@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, TextPlugin);
 
   // --- PRELOADER LOGIC ---
   const preloader = document.getElementById("preloader");
@@ -330,9 +330,9 @@ gsap.utils.toArray(".clusterBurrowing").forEach((container) => {
         number: { value: 140, density: { enable: true, value_area: 900 } },
         color: { value: "#ffffff" },
         shape: { type: "triangle" },
-        opacity: { value: 0.4 },
+        opacity: { value: 0.04 },
         size: { value: 3, random: true },
-        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.25, width: 1 },
+        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.04, width: 1 },
         move: { enable: true, speed: 3, random: true, out_mode: "out" }
       },
       interactivity: {
@@ -343,4 +343,79 @@ gsap.utils.toArray(".clusterBurrowing").forEach((container) => {
       retina_detect: true
     });
   }
+
+  // Register the TextPlugin for the typewriter effect
+gsap.registerPlugin(TextPlugin);
+
+const words = ["FLUTIST", "MUSICIAN", "COMPOSER", "ARTIST"];
+let mainTimeline = gsap.timeline({ repeat: -1 });
+
+words.forEach(word => {
+  let textTimeline = gsap.timeline({
+    repeat: 1, 
+    yoyo: true, 
+    repeatDelay: 4 // This holds the word for 4 seconds before it starts to disappear
+  });
+  
+  textTimeline.to("#typewriter", {
+    duration: 1, 
+    text: word,
+    ease: "none"
+  });
+  
+  mainTimeline.add(textTimeline);
 });
+
+// --- CUSTOM CURSOR TRACKING (SMOOTH VERSION) ---
+const cursor = document.getElementById("custom-cursor");
+
+// Set initial positions
+let mouseX = 0;
+let mouseY = 0;
+
+// Update mouse coordinates on move
+window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+// GSAP Ticker: This runs every frame (60fps+)
+// '0.15' is the delay/inertia. Increase it for a "heavier" feel.
+gsap.ticker.add(() => {
+    const dt = 1.0 - Math.pow(1.0 - 0.15, gsap.ticker.deltaRatio()); 
+    
+    gsap.set(cursor, {
+        x: gsap.utils.interpolate(gsap.getProperty(cursor, "x"), mouseX, dt),
+        y: gsap.utils.interpolate(gsap.getProperty(cursor, "y"), mouseY, dt)
+    });
+});
+
+// --- INTERACTIONS ---
+// Scale effect when clicking
+window.addEventListener("mousedown", () => gsap.to(cursor, { scale: 0.8, duration: 0.3, ease: "power2.out" }));
+window.addEventListener("mouseup", () => gsap.to(cursor, { scale: 1, duration: 0.3, ease: "power2.out" }));
+
+// Hover effect (slower transition for a "magnetic" feel)
+const links = document.querySelectorAll('a, button, .nav-button');
+links.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+        gsap.to(cursor, { 
+            scale: 4, 
+            backgroundColor: "rgba(255, 255, 255, 0.1)", 
+            duration: 0.5, 
+            ease: "power3.out" 
+        });
+    });
+    link.addEventListener("mouseleave", () => {
+        gsap.to(cursor, { 
+            scale: 1, 
+            backgroundColor: "#ff3d00", 
+            duration: 0.5, 
+            ease: "power3.out" 
+        });
+    });
+});
+
+  
+});
+
